@@ -1,13 +1,13 @@
-Mass Password Changer
+# Mass Password Changer
 
 
-Overview
+# Overview
 
 This project is a collection of Ansible scripts designed to enhance network security by automating user account management and SSH key handling. It's ideal for administrators looking to streamline network host security.
 
-# This assumes you're not using LDAP; using this against LDAP-bound servers may result in unintended consequences.
+This assumes you're not using LDAP; using this against LDAP-bound servers may result in unintended consequences.
 
-Features
+# Features
 
 - User Account Listing: List all user accounts across network hosts.
 - Password Reset: Automate the process of setting random temporary passwords for non-system users.
