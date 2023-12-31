@@ -1,15 +1,16 @@
 ---
-- hosts: all
-  gather_facts: no
-  become: yes  # This makes Ansible use sudo to execute commands as root
+- hosts: all                        # Target all hosts in the inventory
+  gather_facts: no                  # Skip gathering system facts
+  become: yes                       # Execute tasks with elevated privileges (sudo/root)
+
   tasks:
-    - name: Get a list of all users
-      shell: getent passwd
-      register: passwd_output
+    - name: Get a list of all users # Task to get all users
+      shell: getent passwd          # Execute 'getent passwd' command to fetch user data
+      register: passwd_output       # Store the command output in 'passwd_output'
 
-    - name: Show all users
-      set_fact:
-        system_users: "{{ passwd_output.stdout_lines | list }}"
+    - name: Show all users          # Task to process and show user list
+      set_fact:                     # Set a fact (variable) for use in the playbook
+        system_users: "{{ passwd_output.stdout_lines | list }}"  # Process output to list format
 
-    - debug:
-        var: system_users
+    - debug:                        # Debug task to display the list of users
+        var: system_users            # Display the content of 'system_users'
