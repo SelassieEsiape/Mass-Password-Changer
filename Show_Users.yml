@@ -1,0 +1,15 @@
+---
+- hosts: all
+  gather_facts: no
+  become: yes  # This makes Ansible use sudo to execute commands as root
+  tasks:
+    - name: Get a list of all users
+      shell: getent passwd
+      register: passwd_output
+
+    - name: Show all users
+      set_fact:
+        system_users: "{{ passwd_output.stdout_lines | list }}"
+
+    - debug:
+        var: system_users
